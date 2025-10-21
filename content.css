@@ -1,0 +1,15 @@
+#focuslens-timer {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: sans-serif;
+  font-size: 14px;
+  z-index: 999999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  /* Başlangıçta gizli olsun */
+ /* display: none;*/ 
+}

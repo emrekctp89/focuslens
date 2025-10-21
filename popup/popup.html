@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FocusLens</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body class="focuslens-popup">
+
+  <header class="popup-header">
+    <h1>FocusLens</h1>
+  </header>
+
+  <main id="summary" class="summary-section">
+    Yükleniyor...
+  </main>
+
+  <section class="settings-section">
+    <div id="limitForm">
+      <b>Limit Ekle (Katlamalı Alarm):</b>
+      <div class="form-group">
+        <input type="text" id="siteName" placeholder="Örn: youtube.com">
+        <input type="number" id="limitMinutes" placeholder="Dk">
+        <button id="saveLimit" title="Bu site için katlamalı (x2) bildirim alarmı başlatır. (Örn: 5dk, 10dk, 20dk...)">Ekle</button>
+      </div>
+    </div>
+    
+    <div id="settingsForm">
+      <label>
+        <input type="checkbox" id="toggleTimer" />
+        Sayfada Anlık Sayacı Göster
+      </label>
+    </div>
+  </section>
+
+  <footer class="popup-footer">
+    <button id="openDashboard" class="btn-primary">
+      Dashboard'u Aç
+    </button>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

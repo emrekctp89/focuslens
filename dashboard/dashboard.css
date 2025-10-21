@@ -1,0 +1,30 @@
+/* dashboard.css */
+body {
+  font-family: sans-serif;
+  padding: 20px;
+  max-width: 900px; /* Sayfa çok genişlemesin */
+  margin: 0 auto;  /* Ortala */
+  background: #fff;
+}
+h1 {
+  font-size: 24px;
+  text-align: center;
+}
+canvas {
+  width: 100%;
+  max-height: 450px;
+  margin-top: 20px;
+}
+button#resetData {
+  width: auto; /* Tam genişlik olmasın */
+  padding: 10px 15px;
+  margin-top: 20px;
+  cursor: pointer;
+  background: #dc3545; /* Kırmızı reset butonu */
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+button#resetData:hover {
+  background: #c82333;
+}

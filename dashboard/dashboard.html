@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FocusLens Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="focuslens-dashboard">
+
+  <header class="dashboard-header">
+    <h1>FocusLens Dashboard</h1>
+    </header>
+
+  <main class="chart-container">
+    <canvas id="usageChart"></canvas>
+  </main>
+  
+  <footer class="actions-container">
+    <button id="resetData" class="btn-danger">
+      Mevcut Verileri Sıfırla
+    </button>
+  </footer>
+  
+  <script src="../libs/chart.js"></script> 
+  <script src="dashboard.js"></script>
+</body>
+</html>
