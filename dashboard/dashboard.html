@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
   <title>FocusLens Dashboard</title>
@@ -8,20 +8,137 @@
 <body class="focuslens-dashboard">
 
   <header class="dashboard-header">
-    <h1>FocusLens Dashboard</h1>
-    </header>
+    <h1>
+      FocusLens Dashboard 
+      <span class="sparkle">✨</span>
+    </h1>
+    <div class="theme-selector">
+  <label for="themeSelect">🎨 Tema:</label>
+  <select id="themeSelect">
+    <option value="gradient">Gradyan (Varsayılan)</option>
+    <option value="minimal">Sade</option>
+    <option value="nature">Doğa</option>
+    <option value="vibrant">Canlı</option>
+    <option value="serene">Huzurlu</option>
+  </select>
+</div>
+
+  </header>
 
   <main class="chart-container">
     <canvas id="usageChart"></canvas>
   </main>
-  
-  <footer class="actions-container">
-    <button id="resetData" class="btn-danger">
-      Mevcut Verileri Sıfırla
-    </button>
-  </footer>
-  
-  <script src="../libs/chart.js"></script> 
-  <script src="dashboard.js"></script>
+
+  <!-- 🚀 FOCUS INSIGHT MODE -->
+  <section id="insightContainer" class="insight-section">
+    <h2>
+      Focus Insight Mode 
+      <span class="sparkle">🌙</span>
+    </h2>
+
+    <div id="insightContent">
+      Veriler analiz ediliyor...
+    </div>
+
+    <p id="trendTag" class="trend-tag" style="color: #94a3b8;">
+  ⏳ Trend hesaplanıyor...
+</p>
+  </section>
+
+<!-- 🧾 Yeni Geçmiş Aktiviteler Alanı -->
+<section id="activityLogs" class="insight-section">
+  <h2>📜 Geçmiş Aktiviteler</h2>
+  <div id="logContainer">Veriler yükleniyor...</div>
+</section>
+
+<!-- 💡 Alarm Türleri Bilgilendirme (Açılır/Kapanır) -->
+<section id="alarmInfo" class="insight-section">
+  <h2 id="infoHeader" class="accordion-header">
+    📘 Alarm Türleri Bilgilendirme
+    <span id="accordionIcon">▼</span>
+  </h2>
+
+  <div id="infoContent" class="accordion-content">
+    <p class="info-text">Her alarm türünün davranışı aşağıda özetlenmiştir:</p>
+
+    <table class="info-table">
+      <tr>
+        <th>Tür</th>
+        <th>Bildirim</th>
+        <th>Kayıt (log)</th>
+        <th>Ekstra</th>
+      </tr>
+      <tr>
+        <td class="log-type escalating">Katlamalı</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>Limit <b>x2</b> artar</td>
+      </tr>
+      <tr>
+        <td class="log-type fixed">Kişisel</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>Limit sabit kalır</td>
+      </tr>
+      <tr>
+        <td class="log-type daily">Günlük</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>Gün sonunda sıfırlanır</td>
+      </tr>
+      <tr>
+        <td class="log-type strict">Odak Bloğu</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>Site geçici engellenir</td>
+      </tr>
+      <tr>
+        <td class="log-type smart">Akıllı Trend</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>Trend farkına göre bildirim</td>
+      </tr>
+      <tr>
+        <td class="log-type silent">Sessiz</td>
+        <td>❌</td>
+        <td>✅</td>
+        <td>Bildirim yok, sadece kayıt</td>
+      </tr>
+    </table>
+
+    <!-- 🔗 WIKI BİLGİ SATIRI -->
+    <p class="wiki-link">
+      🔗 Daha fazla bilgi için: 
+      <a href="https://github.com/emrekctp89/ai-kesif-platformu/wiki/FocusLens" target="_blank">
+        FocusLens Wiki
+      </a>
+    </p>
+  </div>
+</section>
+
+<footer class="actions-container">
+  <button id="resetData" class="btn-danger">
+    Mevcut Verileri Sıfırla
+  </button>
+</footer>
+
+<script src="../libs/chart.js"></script>
+<script src="dashboard.js"></script>
+
+<!-- 📘 Wiki Bilgi Modal -->
+<div id="wikiModal" class="modal-overlay">
+  <div class="modal-content">
+    <h3>🔗 FocusLens Wiki</h3>
+    <p>
+      Wiki sayfası şu anda geliştiriliyor 🚧<br>
+      Yakında tüm alarm türleri ve örnek senaryolar burada yer alacak.
+    </p>
+    <div class="modal-buttons">
+      <button id="closeWiki" class="btn-secondary">Kapat</button>
+      <button id="goWiki" class="btn-primary">github</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

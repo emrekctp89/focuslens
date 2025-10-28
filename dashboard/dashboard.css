@@ -1,30 +1,489 @@
 /* dashboard.css */
 body {
-  font-family: sans-serif;
+  /* This looks native and professional on every device */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   padding: 20px;
-  max-width: 900px; /* Sayfa çok genişlemesin */
-  margin: 0 auto;  /* Ortala */
-  background: #fff;
+  max-width: 900px; 
+  margin: 0 auto;
+  /* 🌌 Modern ve stabil koyu arka plan (banding önleyici + derin kontrastlı) */
+background-color: #0b1220;
+background-image:
+  /*linear-gradient(180deg, #21155b 0%, #220a5e 55%, #4518cc 100%),*/
+  linear-gradient(180deg, #4518cc 0%, #220a5e 55%, #21155b 100%),
+  radial-gradient(circle at 20% 20%, rgba(255,255,255,0.03), transparent 50%),
+  radial-gradient(circle at 80% 80%, rgba(255,255,255,0.02), transparent 40%);
+background-attachment: fixed;
+background-size: cover;
+
+  
+  /* --- CHANGE 1 --- */
+  /* We need to make sure text directly on the body is visible */
+  color: #f1f1f1; 
+  
+  /* --- CHANGE 2 --- */
+  /* This ensures the gradient always fills the screen */
+  min-height: 100vh;
 }
+
 h1 {
   font-size: 24px;
   text-align: center;
+  
+  /* --- CHANGE 3 --- */
+  /* A subtle shadow helps the text pop against the gradient */
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
+
 canvas {
   width: 100%;
   max-height: 450px;
   margin-top: 20px;
 }
-button#resetData {
-  width: auto; /* Tam genişlik olmasın */
+
+/* This was fine, but I'll update it to the class from the HTML you sent */
+/* Note: Your HTML had "btn-danger" but the modern CSS had "btn-reset". 
+   Let's use "btn-danger" since it was in your HTML. */
+.btn-danger { /* Changed from button#resetData to match your HTML class */
+  width: auto;
   padding: 10px 15px;
   margin-top: 20px;
   cursor: pointer;
-  background: #dc3545; /* Kırmızı reset butonu */
+  background: #5c0c14;
   color: white;
   border: none;
   border-radius: 5px;
+  /* --- ADD THIS LINE --- */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600; /* A slightly bolder font looks good on buttons */
+  
+  /* --- CHANGE 4 --- */
+  /* This makes the hover effect less "snappy" */
+  transition: background-color 0.2s ease;
 }
-button#resetData:hover {
+
+.btn-danger:hover { /* Changed selector */
   background: #c82333;
+}
+
+/* --- THIS IS THE KEY FIX --- */
+.insight-section {
+  /* background: #f8fafc;  <-- Your original */
+  
+  /* --- CHANGE 5 --- */
+  /* Make the card slightly transparent. This tiny change helps 
+     it "blend" with the dark background instead of clashing. */
+  background: rgba(248, 250, 252, 0.98); /* 98% opaque white */
+  backdrop-filter: blur(6px); /* Slight blur for a frosted glass effect */
+
+  /* --- CHANGE 6 --- */
+  /* Your original shadow was invisible on a dark background. 
+     This one is stronger and gives it a "floating" look. */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  
+  /* --- CHANGE 7 --- */
+  /* A very subtle border helps define the card's edge */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* --- NO CHANGE to your text color --- */
+  /* You need dark text on a light card. This is correct! */
+  color: #111827; 
+  
+  margin: 20px auto;
+  padding: 15px 20px;
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+.insight-section h2 .sparkle {
+  font-size: 18px;
+  margin-left: 4px;
+  animation: sparkle 1.5s ease-in-out infinite alternate;
+}
+@keyframes sparkle {
+  from { opacity: 0.5; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1.1); }
+}
+
+
+.insight-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.insight-section li {
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.focus-comment {
+  margin-top: 10px;
+  font-weight: 500;
+  color: #111827;
+}
+
+/* These styles are perfect, no changes needed */
+#insightContainer ul li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+#insightContainer b {
+  color: #353535;
+}
+
+#insightContainer .focus-comment {
+  margin-top: 10px;
+  display: inline-block; /* Good, keep this */
+  
+  /* --- FONT --- */
+  /* Use the same modern font stack for consistency */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+
+  /* --- UPDATED LOOK & FEEL --- */
+  /* This yellow/amber combo makes it a "highlight" box */
+  color: #854d0e;     /* Dark amber text (was dark gray) */
+  background: #fefce8; /* Light yellow background (was light gray) */
+  
+  /* A subtle border to define the box */
+  border: 1px solid #fde047; 
+  
+  padding: 10px 14px; /* Slightly more padding */
+  border-radius: 8px;
+}
+
+.dashboard-header h1 {
+  /*
+    Gradyanı kesintisiz döngü için genişletiyoruz.
+    (Açık -> Koyu -> Açık -> Koyu)
+    Bu sayede animasyon başa döndüğünde dikiş izi belli olmaz.
+  */
+  background: linear-gradient(
+    90deg,
+    #31a561, /* Açık */
+    #1a26a8, /* Koyu */
+    #2e13a8, /* Tekrar Açık */
+    #053d41  /* Tekrar Koyu */
+  );
+
+  /*
+    Genişlettiğimiz gradyanın tamamını sığdırmak için
+    arka plan boyutunu %400 yapıyoruz.
+  */
+  background-size: 400% 400%;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+
+  /*
+    Animasyon adını ve süresini belirliyoruz.
+    'linear' olması hızın hep sabit kalmasını, 'infinite' sonsuz döngüyü sağlar.
+  */
+  animation: gradient-scroll 10s linear infinite;
+}
+
+/*
+  Kesintisiz akış (scroll) animasyonu
+*/
+@keyframes gradient-scroll {
+  0% {
+    /* Başlangıç pozisyonu */
+    background-position: 0% 50%;
+  }
+  100% {
+    /*
+      Bitiş pozisyonu. %400'e getirerek tam bir tur atmasını sağlıyoruz.
+      background-size %400 olduğu için, %400 pozisyonu
+      %0 pozisyonu ile görsel olarak aynıdır ve "takılma" olmaz.
+    */
+    background-position: 400% 50%;
+  }
+}
+.trend-tag {
+  font-weight: 600;
+  margin-top: 10px;
+  text-align: right;
+  font-size: 15px;
+  transition: color 0.4s ease;
+}
+
+
+#logContainer {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #111827;
+}
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.log-table th, .log-table td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 13px;
+}
+
+.log-table th {
+  background-color: #f1f5f9;
+  font-weight: 600;
+}
+
+.log-table tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.log-type {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.log-type.escalating { color: #2563eb; } /* mavi */
+.log-type.fixed { color: #0f766e; }       /* yeşil */
+.log-type.daily { color: #854d0e; }       /* turuncu */
+.log-type.strict { color: #dc2626; }      /* kırmızı */
+.log-type.smart { color: #7e22ce; }       /* mor */
+.log-type.silent { color: #6b7280; }      /* gri */
+
+/* 📘 Alarm Türleri Tablosu */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.info-table th, .info-table td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.info-table th {
+  background-color: #f1f5f9;
+  font-weight: 600;
+}
+
+.info-table td {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.info-text {
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 10px;
+}
+
+
+/* Accordion (Açılır/Kapanır Bilgi Kutusu) */
+.accordion-header {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #f1f5f9, #e2e8f0);
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.accordion-header:hover {
+  background: linear-gradient(to right, #e2e8f0, #cbd5e1);
+  transform: scale(1.01);
+}
+
+#accordionIcon {
+  font-size: 16px;
+  color: #334155;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+.accordion-content.open {
+  max-height: 600px; /* Yeterli yüksekliği aç */
+  opacity: 1;
+  margin-top: 10px;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.info-table th, .info-table td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.info-table th {
+  background-color: #f1f5f9;
+  font-weight: 600;
+}
+
+.info-table td {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.info-text {
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 10px;
+}
+
+/* 📘 Wiki bağlantısı */
+.wiki-link {
+  margin-top: 15px;
+  font-size: 13px;
+  text-align: right;
+  color: #475569;
+}
+.wiki-link a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+.wiki-link a:hover {
+  text-decoration: underline;
+  color: #1e40af;
+}
+
+/* 📘 Wiki Modal Stili */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  max-width: 380px;
+  text-align: center;
+  animation: popIn 0.25s ease;
+}
+
+.modal-content h3 {
+  margin-bottom: 10px;
+  color: #1e293b;
+}
+
+.modal-content p {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.modal-buttons {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btn-secondary {
+  background-color: #e2e8f0;
+  color: #111827;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #cbd5e1;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* 🎨 Temalar */
+
+/* 🌓 OTOMATİK (Sistem teması) */
+  .theme-auto {
+
+    background: linear-gradient(180deg, #101625, #0b0e1a);
+
+    color: #f8fafc;
+
+  }
+
+
+
+/* 2. Minimal (sade koyu ton) */
+.theme-minimal {
+  background: #565454;
+  background-color: #5b5a5a;
+  color: #f1f1f1;
+}
+
+/* 3. Nature (doğa) */
+.theme-nature {
+  background: url("../assets/bg-nature.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #e6f2e6;
+}
+
+/* 4. Serene (huzurlu) */
+.theme-serene {
+  background: url("../assets/bg-serene.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #f0f9ff;
+}
+
+/* 5. Vibrant (canlı renkli) */
+.theme-vibrant {
+  background: linear-gradient(135deg, #dbff27, #ee0979);
+  color: #fffaf0;
+}
+
+
+/* 🎛️ Dropdown görünümü */
+.theme-selector {
+  text-align: right;
+  margin-top: 10px; 
+}
+
+.theme-selector select {
+  background: rgba(255,255,255,0.1);
+  color: inherit;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.theme-selector label {
+  margin-right: 5px;
+  font-weight: 600;
+}
+
+body {
+  transition: background 0.8s ease, color 0.4s ease;
 }

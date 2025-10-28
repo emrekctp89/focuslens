@@ -2,7 +2,9 @@
   "manifest_version": 3,
   "name": "FocusLens",
   "version": "1.2",
-  "description": "Stay focused and track your browsing time intelligently.",
+  "optional_permissions": ["history"],
+  "description": "Stay focused and track your browsing time intelligently. Includes Focus Insight Mode for weekly productivity analysis."
+  ,
   "permissions": [
     "tabs",
     "storage",
@@ -40,6 +42,8 @@
       "matches": ["<all_urls>"]
     }
   ],
+
+  
   
   "host_permissions": ["<all_urls>"]
 }

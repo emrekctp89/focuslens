@@ -1,4 +1,11 @@
- uslens-popup">
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>FocusLens</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body class="focuslens-popup">
 
   <header class="popup-header">
     <h1>FocusLens</h1>
@@ -10,26 +17,35 @@
 
   <section class="settings-section">
     <div id="limitForm">
-      <b>Limit Ekle (Katlamalı Alarm):</b>
+      <b>Limit Ekle (Alarm Modu Seç):</b>
       <div class="form-group">
         <input type="text" id="siteName" placeholder="Örn: youtube.com">
         <input type="number" id="limitMinutes" placeholder="Dk">
-        <button id="saveLimit" title="Bu site için katlamalı (x2) bildirim alarmı başlatır. (Örn: 5dk, 10dk, 20dk...)">Ekle</button>
+
+        <!-- 🔹 Yeni Mod Seçimi -->
+        <select id="alarmType" title="Alarm türünü seç">
+          <option value="escalating">Katlamalı (x2)</option>
+          <option value="fixed">Kişisel Limit</option>
+          <option value="daily">Günlük Limit</option>
+          <option value="strict">Odak Bloğu</option>
+          <option value="smart">Akıllı Trend</option>
+          <option value="silent">Sessiz Mod</option>
+        </select>
+
+        <button id="saveLimit" title="Bu site için alarm oluştur.">Ekle</button>
       </div>
     </div>
-    
+
     <div id="settingsForm">
       <label>
-        <input type="checkbox" id="toggleTimer" />
-        Sayfada Anlık Sayacı Göster
+        <input type="checkbox" id="toggleTimer"  checked="true"/>
+        Sayfada Anlık Sayaç Göster
       </label>
     </div>
   </section>
 
   <footer class="popup-footer">
-    <button id="openDashboard" class="btn-primary">
-      Dashboard'u Aç
-    </button>
+    <button id="openDashboard" class="btn-primary">Dashboard'u Aç</button>
   </footer>
 
   <script src="popup.js"></script>
